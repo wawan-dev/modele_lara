@@ -26,6 +26,15 @@
             <h4>Créer une commande</h4>
         </div>
         <div class="card-body">
+            if($errors->anny())
+                ²<div class="alert alert-danger">
+                    <ul class="list-unstyled text-start m-0">
+                        @foreach ($errors->all()as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="/orders/create" method="post">
                 @csrf
                 <div class="form-group">

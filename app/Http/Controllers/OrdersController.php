@@ -22,11 +22,22 @@ class OrdersController extends Controller
 
     function create(Request $request){
         $order = new Order();
-        $order->orderNumber = $request->input("orderNumber");
+        if(Order::find($order->orderNumber) != null){
+            $order->orderNumber = $request->input("orderNumber");
+        }
+        else{
+            return redirect("/orders/create")->withErrors("Le numéro de commande existe déja dans la base.");
+        }
+
         $order->status = $request->input("status");
         $order->comments = $request->input("comments");
         $order->customerNumber = $request->input("customerNumber");
-        
+        if(Customer::find($order->customerNumber) == null){
+            $order->orderNumber = $request->input("orderNumber");
+        }
+        else{
+            return redirect("/orders/create")->withErrors("Le client n'existe pas dans la base.");
+        }
         $order->orderDate = $request->input("orderDate");
         $order->requiredDate = $request->input("requiredDate");
         $order->shippedDate = $request->input("shippedDate");
