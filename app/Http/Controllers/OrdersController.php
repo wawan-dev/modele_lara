@@ -26,6 +26,10 @@ class OrdersController extends Controller
         $order->status = $request->input("status");
         $order->comments = $request->input("comments");
         $order->customerNumber = $request->input("customerNumber");
+        
+        $order->orderDate = $request->input("orderDate");
+        $order->requiredDate = $request->input("requiredDate");
+        $order->shippedDate = $request->input("shippedDate");
         $order->save();
         return redirect("/orders");
     }
