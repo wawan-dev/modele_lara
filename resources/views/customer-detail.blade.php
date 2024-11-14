@@ -26,37 +26,6 @@
             color: #343a40; 
         }
     </style>
-
-        <h2>Commande</h2>
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>orderNumber</td>
-                        <td>orderDate</td>
-                        <td>requiredDate</td>
-                        <td>shippedDate</td>
-                        <td>status</td>
-                        <td>comments</td>
-                        <td>customerNumber</td>
-                    </tr>
-                </thead>
-                <tbody class="bg-white dark:bg-slate-800">
-                
-                    <tr>
-                        <td>{{ $order->orderNumber }}</td>
-                        <td>{{ $order-> orderDate }}</td>
-                        <td>{{ $order->requiredDate }}</td>
-                        <td>{{ $order->shippedDate }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td>{{ $order->comments }}</td>
-                        <td>{{ $order->customerNumber }}</td>
-                    </tr>    
-
-                </tbody>
-            </table>
-
-        <br>
         <h2>Client</h2>
         <table class="table table-striped">
                 <thead>
@@ -95,7 +64,7 @@
             </table>
 
         <h2>Détail</h2>  
-        <table class="table table-striped"">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <td>orderNumber</td>
@@ -107,14 +76,16 @@
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800">
-            @foreach($orderdetails as $o)
+            @foreach($customer->orders as $o)
+                @foreach($o->orderdetails as $c)
                 <tr>
-                    <td>{{ $o->orderNumber }}</td>
-                    <td>{{ $o->productCode }}</td>
-                    <td>{{ $o->quantityOrdered }}</td>
-                    <td>{{ $o->priceEach }}</td>
-                    <td>{{ $o->orderLineNumber }}</td>
+                    <td>{{ $c->orderNumber }}</td>
+                    <td>{{ $c->productCode }}</td>
+                    <td>{{ $c->quantityOrdered }}</td>
+                    <td>{{ $c->priceEach }}</td>
+                    <td>{{ $c->orderLineNumber }}</td>
                 </tr>  
+                @endforeach
             @endforeach  
             </tbody>
         </table>

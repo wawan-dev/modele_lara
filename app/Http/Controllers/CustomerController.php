@@ -24,4 +24,8 @@ class CustomerController extends Controller
         return view("customer-list", ["customers" => Customer::paginate(10)]);
     }
 
+    function detail(Customer $id){
+        return view("customer-detail", ["customer" => $id]);
+    }
+
 }

@@ -18,5 +18,6 @@ Route::get('/orders', [OrdersController::class, 'list']);
 Route::get('/orders/{id}', [OrdersController::class, 'detail']);
 
 Route::get('/customers', [CustomerController::class, 'list']);
+Route::get('/customers/{id}', [CustomerController::class, 'detail']);
 
 Route::get('/customers/categories', [CustomerController::class, 'test']);
