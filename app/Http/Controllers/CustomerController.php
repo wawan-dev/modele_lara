@@ -7,7 +7,7 @@ use App\Models\Customer;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
-class CustomersController extends Controller
+class CustomerController extends Controller
 {
 
     public function test(){
@@ -15,9 +15,13 @@ class CustomersController extends Controller
         $customer = Customer::find(103);
 
         // Ajouter la catégorie au client
-        $customer->categories()->attach([103, 4]);
+        $customer->categories()->detach([2]);
 
-        return view("orders-list");
+        return redirect("/orders");
+    }
+
+    function list(){
+        return view("customer-list", ["customers" => Customer::paginate(10)]);
     }
 
 }
