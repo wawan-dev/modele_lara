@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrdersController;
 
@@ -14,3 +15,5 @@ Route::post('/orders/create', [OrdersController::class, 'create']);
 
 Route::get('/orders', [OrdersController::class, 'list']);
 Route::get('/orders/{id}', [OrdersController::class, 'detail']);
+
+Route::get('/customers/categories', [CustomersController::class, 'test']);

@@ -8,7 +8,8 @@
     </head>
     <body>
         <div>
-            <div>
+            <div >
+                <a href="/customers/categories">dsdx</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -30,9 +31,11 @@
                                 <a class="btn btn-primary" href="/orders/{{$order->orderNumber}}">Voir la page de détail</a>
                             </td>
                         </tr>    
+                        
                     @endforeach
                     </tbody>
                 </table>
+                <div>{{$orders->links('pagination::bootstrap-4')}} </div>
             </div>
         </div>
     </body>

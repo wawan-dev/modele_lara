@@ -11,7 +11,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            
         }
         .card {
             max-width: 500px;
@@ -20,21 +20,21 @@
     </style>
 </head>
 <body>
-
+    
     <div class="card shadow-sm">
         <div class="card-header text-center bg-primary text-white">
             <h4>Créer une commande</h4>
         </div>
         <div class="card-body">
-            if($errors->anny())
-                ²<div class="alert alert-danger">
-                    <ul class="list-unstyled text-start m-0">
-                        @foreach ($errors->all()as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled text-start m-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <form action="/orders/create" method="post">
                 @csrf
                 <div class="form-group">
@@ -59,6 +59,7 @@
                 <div class="form-group">
                     <label for="customerNumber">Numéro de client</label>
                     <select class="form-control" name="customerNumber" id="customerNumber">
+                        
                         @foreach($customers as $customer)
                             <option value="{{$customer->customerNumber}}">{{$customer->contactLastName}} {{$customer->contactFirstName}}</option>
                         @endforeach
@@ -76,6 +77,23 @@
                     <label for="shippedDate">Date d'envoie</label>
                     <input class="form-control" name="shippedDate" type="date">
                 </div>
+                
+                <div class="card-body " style="background-color:blanchedalmond;">
+                    <p class="text align"> Payement </p>
+                    <div class="form-group">
+                        <label>Numéro de chèque</label>
+                        <input class="form-control" for="num_cheque" name="num_cheque" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Date de paiement</label>
+                        <input class="form-control" for="date_paiement" name="date_paiement" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>Montant</label>
+                        <input class="form-control" for="montant" name="montant" type="text">
+                    </div>
+                </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Créer la commande</button>
                 </div>
